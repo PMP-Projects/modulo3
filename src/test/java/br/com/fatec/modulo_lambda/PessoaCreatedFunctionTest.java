@@ -10,7 +10,7 @@ import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.function.Consumer;
 
-public class PessoaCreatedFunctionTest {
+class PessoaCreatedFunctionTest {
 
     @Test
     void deveConsumirLambdaMessageEImprimirNoConsole() {
