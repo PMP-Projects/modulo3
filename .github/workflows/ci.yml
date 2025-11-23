@@ -57,7 +57,7 @@ jobs:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
       - name: Build & Test with Jacoco
-        run: mvn clean verify -DskipTests
+        run: mvn clean verify
       - name: SonarCloud Scan via Maven
         run: |
           mvn sonar:sonar \
