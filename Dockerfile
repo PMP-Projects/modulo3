@@ -1,9 +1,17 @@
-FROM amazoncorretto:21-alpine3.15
+FROM amazoncorretto:21-alpine3.18 AS build
 
 WORKDIR /app
 
-ARG JAR_FILE=target/*.jar
+COPY . .
 
-COPY target/*.jar app.jar
+RUN apk add --no-cache bash
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+RUN ./mvnw --no-transfer-progress clean package -DskipTests
+
+FROM amazoncorretto:21-alpine3.18
+
+WORKDIR /app
+
+COPY --from=build /app/target/*.jar app.jar
+
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
