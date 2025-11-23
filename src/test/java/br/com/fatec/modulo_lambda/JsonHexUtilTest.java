@@ -9,10 +9,8 @@ class JsonHexUtilTest {
 
     @Test
     void deveConverterJsonDeResourceParaHex() {
-        // arquivo deve estar em: src/test/resources/payload/teste_pessoa.json
         String hex = JsonHexUtil.jsonResourceToHex("payload/teste_pessoa.json");
 
-        // JSON esperado minificado: {"nome":"Julio","dataNascimento":"2000-10-10"}
         String expectedHex = "7b226e6f6d65223a224a756c696f222c22646174614e617363696d656e746f223a22323030302d31302d3130227d";
 
         Assertions.assertEquals(expectedHex, hex);
