@@ -4,7 +4,7 @@ import br.com.fatec.modulo_lambda.utils.json.JsonHexUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class JsonHexUtilTest {
+class JsonHexUtilTest {
 
     @Test
     void deveConverterJsonDeResourceParaHex() {
