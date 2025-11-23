@@ -1,6 +1,7 @@
 package br.com.fatec.modulo_lambda;
 
 import br.com.fatec.modulo_lambda.utils.json.JsonHexUtil;
+import br.com.fatec.modulo_lambda.utils.json.exception.JsonHexConversionException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -8,9 +9,10 @@ class JsonHexUtilTest {
 
     @Test
     void deveConverterJsonDeResourceParaHex() {
+        // arquivo deve estar em: src/test/resources/payload/teste_pessoa.json
         String hex = JsonHexUtil.jsonResourceToHex("payload/teste_pessoa.json");
 
-        // Hex esperado do JSON minificado:
+        // JSON esperado minificado: {"nome":"Julio","dataNascimento":"2000-10-10"}
         String expectedHex = "7b226e6f6d65223a224a756c696f222c22646174614e617363696d656e746f223a22323030302d31302d3130227d";
 
         Assertions.assertEquals(expectedHex, hex);
@@ -20,13 +22,27 @@ class JsonHexUtilTest {
     void deveConverterStringParaHex() {
         String input = "ABC";
         String expected = "414243";
+
         Assertions.assertEquals(expected, JsonHexUtil.stringToHex(input));
     }
 
     @Test
     void deveLancarErroQuandoArquivoNaoExiste() {
-        Assertions.assertThrows(RuntimeException.class, () -> {
-            JsonHexUtil.jsonResourceToHex("payload/inexistente.json");
-        });
+        JsonHexConversionException exception = Assertions.assertThrows(
+                JsonHexConversionException.class,
+                () -> JsonHexUtil.jsonResourceToHex("payload/inexistente.json")
+        );
+
+        Assertions.assertTrue(exception.getMessage().contains("Arquivo JSON não encontrado"));
+    }
+
+    @Test
+    void deveLancarErroQuandoStringNula() {
+        JsonHexConversionException exception = Assertions.assertThrows(
+                JsonHexConversionException.class,
+                () -> JsonHexUtil.stringToHex(null)
+        );
+
+        Assertions.assertEquals("String de entrada não pode ser nula.", exception.getMessage());
     }
 }

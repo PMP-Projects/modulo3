@@ -27,7 +27,6 @@ public final class JsonHexUtil {
             }
 
             Object jsonObj = mapper.readValue(in, Object.class);
-
             String jsonMin = mapper.writeValueAsString(jsonObj);
 
             return stringToHex(jsonMin);
