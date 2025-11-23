@@ -3,7 +3,11 @@ package br.com.fatec.modulo_lambda;
 import br.com.fatec.modulo_lambda.utils.json.exception.JsonHexConversionException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
+@SpringBootTest
+@ActiveProfiles("test")
 class JsonHexConversionExceptionTest {
 
     @Test

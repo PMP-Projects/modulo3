@@ -4,12 +4,16 @@ import br.com.fatec.modulo_lambda.function.PessoaCreatedFunction;
 import br.com.fatec.modulo_lambda.function.dto.LambdaMessage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.function.Consumer;
 
+@SpringBootTest
+@ActiveProfiles("test")
 class PessoaCreatedFunctionTest {
 
     @Test
